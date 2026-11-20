@@ -1,0 +1,42 @@
+app-id: io.github.redmoon.dellbiosmonitor
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk25
+command: dell-bios-monitor
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  - --talk-name=org.freedesktop.Flatpak
+  - --env=PATH=/app/jre/bin:/app/bin:/usr/bin
+  - --env=JAVA_HOME=/app/jre
+modules:
+  - name: openjdk-runtime
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk25/install.sh
+  - name: dell-bios-monitor
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 dell-bios-monitor.jar /app/share/dell-bios-monitor/dell-bios-monitor.jar
+      - install -Dm755 dell-bios-monitor /app/bin/dell-bios-monitor
+      - install -Dm644 io.github.redmoon.dellbiosmonitor.desktop /app/share/applications/io.github.redmoon.dellbiosmonitor.desktop
+      - install -Dm644 app-icon.svg /app/share/icons/hicolor/scalable/apps/io.github.redmoon.dellbiosmonitor.svg
+      - install -Dm644 io.github.redmoon.dellbiosmonitor.metainfo.xml /app/share/metainfo/io.github.redmoon.dellbiosmonitor.metainfo.xml
+    sources:
+      - type: file
+        path: ../../target/dell-bios-monitor.jar
+        dest-filename: dell-bios-monitor.jar
+      - type: script
+        dest-filename: dell-bios-monitor
+        commands:
+          - exec java --enable-native-access=ALL-UNNAMED -jar /app/share/dell-bios-monitor/dell-bios-monitor.jar "$@"
+      - type: file
+        path: app-icon.svg
+      - type: file
+        path: io.github.redmoon.dellbiosmonitor.desktop
+      - type: file
+        path: io.github.redmoon.dellbiosmonitor.metainfo.xml

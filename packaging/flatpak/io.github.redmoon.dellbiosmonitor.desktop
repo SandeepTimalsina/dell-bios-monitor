@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Dell BIOS Monitor
+Comment=Inspect and manage Dell BIOS settings
+Exec=dell-bios-monitor
+Icon=io.github.redmoon.dellbiosmonitor
+Terminal=false
+Categories=System;Settings;HardwareSettings;
+StartupNotify=true

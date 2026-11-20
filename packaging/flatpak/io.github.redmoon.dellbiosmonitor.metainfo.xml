@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.redmoon.dellbiosmonitor</id>
+  <name>Dell BIOS Monitor</name>
+  <summary>Inspect and manage Dell BIOS settings</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>Review Dell BIOS settings, compare scans, save favorites, and stage supported changes for CCTK.</p>
+    <p>Dell Command | Configure must be installed on the host system.</p>
+  </description>
+  <launchable type="desktop-id">io.github.redmoon.dellbiosmonitor.desktop</launchable>
+  <provides><binary>dell-bios-monitor</binary></provides>
+</component>
